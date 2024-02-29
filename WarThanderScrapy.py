@@ -5,7 +5,7 @@ import time
 import pyperclip
 
 chrome_options = Options()
-chrome_options.add_argument('--headless')  # Ενεργοποίηση του headless mode
+chrome_options.add_argument('--headless')  # Enables headless mode
 
 driver = webdriver.Chrome(options=chrome_options)
 
@@ -23,19 +23,19 @@ driver.quit()
 #with open('page_content.html', 'w', encoding='utf-8') as file:
     #file.write(html_content)
 
-#print("HTML περιεχόμενο εξαγάγθηκε στο αρχείο 'page_content.html'")
+#print("HTML file 'page_content.html'")
 
 soup = BeautifulSoup(html_content, 'html.parser')
 
-# Βρίσκουμε την παραμετρο με id "ind-compass" και παίρνουμε το κείμενό του
+# We find the parameter with id "ind-compass" and get its text
 compass_element = soup.find(id='ind-compass').text
 
-# περνουμε μόνο την τιμή
+# we only pass the price
 compass_value = compass_element.split('=')[-1]
 
 print(compass_value)
-# Αντιγράφει την τιμή στο πρόχειρο
+# Copies the value to the clipboard
 pyperclip.copy(compass_value)
 
 copied_value = pyperclip.paste()
-print("Το compass εχει αντιγραφη :", copied_value)
+print("The compass has a copy :", copied_value)
